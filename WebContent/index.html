@@ -1,0 +1,61 @@
+<!-- 
+Author Kapil Halewale
+ -->
+<html>  
+<head>  
+<style>
+h2{
+font-weight:500;
+font-family:calibri;
+}
+table{
+ border-collapse:collapse;
+ }
+</style>
+<script>  
+var request;  
+	function sendInfo()  
+	{  
+	var v=document.vinform.t1.value;  
+	var url="employeeDetails.jsp?val="+v;  
+	  
+	if(window.XMLHttpRequest){  
+	request=new XMLHttpRequest();  
+	}  
+	else if(window.ActiveXObject){  
+	request=new ActiveXObject("Microsoft.XMLHTTP");  
+	}  
+	  
+	try{  
+	request.onreadystatechange=getInfo;  
+	request.open("GET",url,true);  
+	request.send();  
+	}catch(e){alert("Unable to connect to server");}  
+	}  
+	  
+	function getInfo(){  
+	if(request.readyState==4){  
+	var val=request.responseText;  
+	document.getElementById('eid').innerHTML=val;  
+	}  
+}  
+  
+</script>  
+</head>  
+<body>  
+ <center>
+ <table width='500'>
+ 	<tr bgcolor='skyblue'>
+ 		<td align='center'><h2>Employee Search Area</h2></td>
+ 	</tr>
+ </table>
+ <br> <br>
+Use ID  Ex: 1,2 for test 
+<form name="vinform">  
+	<lable style='font-family:calibri;'>Provide Employee ID Number</lable><input type="text" name="t1" onkeyup="sendInfo()">  
+</form> 
+  
+<span id="eid"> </span>  
+ </center>  
+</body>  
+</html>  
